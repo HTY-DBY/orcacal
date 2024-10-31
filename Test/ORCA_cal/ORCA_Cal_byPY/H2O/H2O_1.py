@@ -9,7 +9,7 @@ input_file_path = os.path.join(
 	GSet.ORCA_cal_test_structure, os.path.splitext(os.path.basename(__file__))[0]
 )
 
-orcacal.run(ORCA_ins_path=GSet.ORCA_ins_path, input_file_path=input_file_path)
+orcacal.run(GSet.ORCA_ins_path, input_file_path)
 orcacal.make_molden(ORCA_ins_path=GSet.ORCA_ins_path, input_file_path=input_file_path)
 
 dipolemoment_Debye = orcacal.get.dipolemoment_Debye(input_file_path)

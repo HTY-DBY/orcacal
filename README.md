@@ -129,14 +129,52 @@ orcacal.make_molden(ORCA_ins_path, input_file_path)
 
 输入的文件的命名不一定需要是 input.xxx，这只是默认值，同理输出也不一定命名为 result.xxx，可以查看相应方法的 API，基本都提供了修改方案
 
-例如在设置 input_name 或/和 output_name
+例如在`orcacal.run`中设置 input_name 或/和 output_name
 
 `orcacal.run(ORCA_ins_path, input_file_path, input_name='input', output_name='result')`
 
-# 4. 在开发的功能
+# 4. API 手册
+
+## 4.1. orcacal
+
+### 4.1.1. orcacal.run
+
+`run(ORCA_ins_path: Path, input_file_path: Path, input_name: str = 'input', output_name: str = 'result') -> None`
+
+执行 ORCA 计算并将输出结果保存到指定文件。
+
+Args:
+
+ORCA_ins_path (Path): ORCA 安装目录。
+
+input_file_path (Path): 输入文件所在的路径。
+
+input_name (str): 输入文件的基本名称（不包括扩展名），默认是 'input'。
+
+output_name (str): 输出结果文件的基本名称（不包括扩展名），默认是 'result'。
+
+## 4.2. orcacal.get
+
+### 4.2.1. orcacal.get.homo_Lumo_eV
+
+`homo_Lumo_eV(input_file_path: Path, output_name: str = 'result') -> list or None:`
+
+从指定的输出文件中提取 HOMO 和 LUMO 能量值，单位为 eV。
+
+Args:
+
+input_file_path (Path): 输入文件的路径，包含输出文件的目录。
+
+output_name (str): 输出文件的名称，不包含扩展名，默认为 'result'。
+
+Returns:
+
+list or None: 包含 HOMO 和 LUMO 能量值及其差值的列表；如果未找到数据，则返回 None。
+
+# 5. 在开发的功能
 
 吉布斯能量变换和换算，福井指数
 
-# 5. Star History
+# 6. Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=HTY-DBY/orcacal&type=Date)](https://star-history.com/#HTY-DBY/orcacal&Date)

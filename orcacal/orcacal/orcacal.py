@@ -1,25 +1,25 @@
 import os
 import shutil
 import subprocess
-
+from pathlib import Path
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
 from orcacal.AssistFun import delete_and_add_block, update_file_section
 
 
-def run(ORCA_ins_path, input_file_path, input_name='input', output_name='result') -> None:
+def run(ORCA_ins_path: Path, input_file_path: Path, input_name: str = 'input', output_name: str = 'result') -> None:
 	"""执行 ORCA 计算并将输出结果保存到指定文件。
 
 	Args:
-		ORCA_ins_path: ORCA 安装目录。
-		input_file_path: 输入文件所在的路径。
-		input_name: 输入文件的基本名称（不包括扩展名），默认是 'input'。
-		output_name: 输出结果文件的基本名称（不包括扩展名），默认是 'result'。
+		ORCA_ins_path (Path): ORCA 安装目录。
+		input_file_path (Path): 输入文件所在的路径。
+		input_name (str): 输入文件的基本名称（不包括扩展名），默认是 'input'。
+		output_name (str): 输出结果文件的基本名称（不包括扩展名），默认是 'result'。
 	"""
-	input_file = os.path.join(input_file_path, f'{input_name}.inp')
-	result_file = os.path.join(input_file_path, f'{output_name}.out')
-	ORCA_main_path = os.path.join(ORCA_ins_path, 'orca.exe')
+	input_file = input_file_path / f'{input_name}.inp'
+	result_file = input_file_path / f'{output_name}.out'
+	ORCA_main_path = ORCA_ins_path / 'orca.exe'
 
 	cmd = f'{ORCA_main_path} {input_file} > {result_file}'
 	temp_name = 'ORCA 计算'
@@ -36,16 +36,16 @@ def run(ORCA_ins_path, input_file_path, input_name='input', output_name='result'
 		print(e)
 
 
-def make_molden(ORCA_ins_path, input_file_path, name='input') -> None:
+def make_molden(ORCA_ins_path: Path, input_file_path: Path, name: str = 'input') -> None:
 	"""生成 Molden 文件并将其复制并重命名。
 
 	Args:
-		ORCA_ins_path: ORCA 安装目录。
-		input_file_path: 输入文件所在的路径。
-		name: 输入文件的基本名称（不包括扩展名），默认是 'input'。
+		ORCA_ins_path (Path): ORCA 安装目录。
+		input_file_path (Path): 输入文件所在的路径。
+		name (str): 输入文件的基本名称（不包括扩展名），默认是 'input'。
 	"""
-	input_file = os.path.join(input_file_path, name)
-	ORCA_2mkl_path = os.path.join(ORCA_ins_path, 'orca_2mkl.exe')
+	input_file = input_file_path / name
+	ORCA_2mkl_path = ORCA_ins_path / 'orca_2mkl.exe'
 	cmd = f'{ORCA_2mkl_path} "{input_file}" -molden'
 	temp_name = 'molden 文件生成'
 
@@ -53,10 +53,10 @@ def make_molden(ORCA_ins_path, input_file_path, name='input') -> None:
 		print(f'开始 {temp_name}...')
 		subprocess.run(cmd, shell=True, check=True)
 
-		old_file = os.path.join(input_file_path, f'{name}.molden.input')
-		new_file = os.path.join(input_file_path, f'{name}.molden')
+		old_file = input_file_path / f'{name}.molden.input'
+		new_file = input_file_path / f'{name}.molden'
 
-		if os.path.exists(old_file):
+		if old_file.exists():
 			print(f'复制并重命名 {name}.molden.input 为 {name}.molden')
 			shutil.copy(old_file, new_file)
 		else:
@@ -71,12 +71,12 @@ def make_molden(ORCA_ins_path, input_file_path, name='input') -> None:
 		print(e)
 
 
-def set_nprocs(input_file_path, jobs=1):
+def set_nprocs(input_file_path: Path, jobs: int = 1) -> None:
 	"""替换或添加 %pal nprocs 内容以设置并行计算的处理器数量。
 
 	Args:
-		input_file_path: 输入文件的路径。
-		jobs: 要设置的处理器数量，默认是 1。如果设置为 -1，将使用可用的 CPU 核心数量。
+		input_file_path (Path): 输入文件的路径。
+		jobs (int): 要设置的处理器数量，默认是 1。如果设置为 -1，将使用可用的 CPU 核心数量。
 	"""
 	jobs = os.cpu_count() if jobs == -1 else jobs
 	new_pal_line = f'% pal nprocs {jobs} end\n'
@@ -84,24 +84,24 @@ def set_nprocs(input_file_path, jobs=1):
 	update_file_section(input_file_path, pattern, new_pal_line, position='end')
 
 
-def set_maxcore(input_file_path, maxcore=500):
-	"""一个核心的最大内存使用量
+def set_maxcore(input_file_path: Path, maxcore: int = 500) -> None:
+	"""设置每个核心的最大内存使用量。
 
 	Args:
-		input_file_path: 输入文件的路径。
-		maxcore: 要设置的最大内存大小（单位为 MB），默认是 500。
+		input_file_path (Path): 输入文件的路径。
+		maxcore (int): 要设置的最大内存大小（单位为 MB），默认是 500。
 	"""
 	new_maxcore_line = f'% maxcore {maxcore}\n'
 	pattern = r'^\s*%?\s*maxcore\s+\d+\s*$'
 	update_file_section(input_file_path, pattern, new_maxcore_line, position='end')
 
 
-def set_calfun(input_file_path, calfun=''):
+def set_calfun(input_file_path: Path, calfun: str = '') -> None:
 	"""替换或添加 %set_calfun 内容以设置计算方法。
 
 	Args:
-		input_file_path: 输入文件的路径。
-		calfun: 要设置的计算方法字符串，默认为 '! HF DEF2-SVP LARGEPRINT'。
+		input_file_path (Path): 输入文件的路径。
+		calfun (str): 要设置的计算方法字符串，默认为 '! HF DEF2-SVP LARGEPRINT'。
 	"""
 	if not calfun:
 		calfun = '! HF DEF2-SVP LARGEPRINT'
@@ -110,12 +110,12 @@ def set_calfun(input_file_path, calfun=''):
 	update_file_section(input_file_path, pattern, new_maxcore_line, position='start')
 
 
-def set_location(input_file_path, location=''):
+def set_location(input_file_path: Path, location: str = '') -> None:
 	"""匹配文件中两个 ** 之间的内容并插入新的位置描述。
 
 	Args:
-		input_file_path: 输入文件的路径。
-		location: 要分析的物质的原子的位置描述，默认是 H2O 的笛卡尔坐标。
+		input_file_path (Path): 输入文件的路径。
+		location (str): 要分析的物质的原子的位置描述，默认是 H2O 的笛卡尔坐标。
 	"""
 	if not location:
 		location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
@@ -124,10 +124,10 @@ def set_location(input_file_path, location=''):
 
 	# 删除匹配的块，并插入新内容到文件的末尾
 	delete_and_add_block(input_file_path, pattern, new_content, position='end')
-	print(f'The position of the atom is updated to:\n{location}\n')
+	print(f'原子位置已更新为:\n{location}\n')
 
 
-def calculate_multiplicity(mol):
+def calculate_multiplicity(mol) -> int:
 	"""根据分子的未配对电子数量计算自旋多重度。
 
 	Args:
@@ -147,10 +147,10 @@ def generate_xyz(smiles: str, charge: int = None, multiplicity: int = None, rand
 	"""从 SMILES 创建分子对象并生成带电荷和自旋多重度的笛卡尔坐标系 (xyz)。
 
 	Args:
-		smiles: 分子的 SMILES 表示。
-		charge: 分子的电荷，默认为 None。会根据分子计算。
-		multiplicity: 分子的自旋多重度，默认为 None。会根据分子计算。
-		randomSeed: 生成 3D 坐标时的随机种子，默认为 42。
+		smiles (str): 分子的 SMILES 表示。
+		charge (int): 分子的电荷，默认为 None。会根据分子计算。
+		multiplicity (int): 分子的自旋多重度，默认为 None。会根据分子计算。
+		randomSeed (int): 生成 3D 坐标时的随机种子，默认为 42。
 
 	Returns:
 		str: 笛卡尔坐标系 (xyz)，包含电荷和自旋多重度信息。
@@ -176,7 +176,7 @@ def generate_xyz(smiles: str, charge: int = None, multiplicity: int = None, rand
 		for pos in [mol.GetConformer().GetAtomPosition(atom.GetIdx())]
 	]
 
-	# 生成带电荷和多重度的 笛卡尔坐标系 (xyz)
+	# 生成带电荷和多重度的笛卡尔坐标系 (xyz)
 	return f"* xyz {charge} {multiplicity}\n{chr(10).join(atom_coords)}\n*"
 
 
