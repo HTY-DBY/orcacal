@@ -2,6 +2,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
@@ -76,7 +77,7 @@ def set_nprocs(input_file_path: Path, jobs: int = 1) -> None:
 
 	Args:
 		input_file_path (Path): 输入文件的路径。
-		jobs (int): 要设置的处理器数量，默认是 1。如果设置为 -1，将使用可用的 CPU 核心数量。
+		jobs (int): 要设置的处理器数量，默认是 1。如果设置为 -1，将使用最大可用的 CPU 核心数量。
 	"""
 	jobs = os.cpu_count() if jobs == -1 else jobs
 	new_pal_line = f'% pal nprocs {jobs} end\n'
@@ -96,29 +97,26 @@ def set_maxcore(input_file_path: Path, maxcore: int = 500) -> None:
 	update_file_section(input_file_path, pattern, new_maxcore_line, position='end')
 
 
-def set_calfun(input_file_path: Path, calfun: str = '') -> None:
+def set_calfun(input_file_path: Path, calfun: str = '! HF DEF2-SVP LARGEPRINT') -> None:
 	"""替换或添加 %set_calfun 内容以设置计算方法。
 
 	Args:
 		input_file_path (Path): 输入文件的路径。
 		calfun (str): 要设置的计算方法字符串，默认为 '! HF DEF2-SVP LARGEPRINT'。
 	"""
-	if not calfun:
-		calfun = '! HF DEF2-SVP LARGEPRINT'
+
 	new_maxcore_line = f'{calfun}\n'
 	pattern = r'^\s*!.*$'
 	update_file_section(input_file_path, pattern, new_maxcore_line, position='start')
 
 
-def set_location(input_file_path: Path, location: str = '') -> None:
+def set_location(input_file_path: Path, location: str = '* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*') -> None:
 	"""匹配文件中两个 ** 之间的内容并插入新的位置描述。
 
 	Args:
 		input_file_path (Path): 输入文件的路径。
 		location (str): 要分析的物质的原子的位置描述，默认是 H2O 的笛卡尔坐标。
 	"""
-	if not location:
-		location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
 	new_content = f'{location}\n'  # 去除多余空格并添加换行符
 	pattern = r'\*\s*xyz.*?\*'
 
