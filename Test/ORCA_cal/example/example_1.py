@@ -1,16 +1,12 @@
 import orcacal
 
-# -- A
-# ------input.inp
-
-input_file_path = "运行的项目路径 A"
-ORCA_ins_path = "ORCA 的安装路径，请勿输入可执行文件的路径"
-
-input_file_path = "/Test/ORCA_cal/ORCA_structure/H2O_1"
-ORCA_ins_path = "D:\hty\ins\ORCA_6"
+# input_file_path = "运行的项目路径 H2O_1"
+# ORCA_ins_path = "ORCA 的安装路径，请勿输入可执行文件的路径"
+input_file_path = f"D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\H2O_1"
+ORCA_ins_path = f"D:\hty\ins\ORCA_6"
 
 # 运行 ORCA 文件 input.inp
-orcacal.run(ORCA_ins_path=ORCA_ins_path, input_file_path=input_file_path)
+orcacal.run(ORCA_ins_path, input_file_path)
 
 # 输出偶极矩 (Debye)
 # 返回 list [总偶极矩, X方向的偶极矩，Y方向的偶极矩，Z方向的偶极矩]

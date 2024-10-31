@@ -1,5 +1,4 @@
 import os
-import re
 import shutil
 import subprocess
 
@@ -10,7 +9,7 @@ def run(ORCA_ins_path, input_file_path, input_name='input', output_name='result'
 	"""执行 ORCA 计算并将输出结果保存到指定文件。
 
 	Args:
-		ORCA_ins_path: ORCA 可执行文件的路径。
+		ORCA_ins_path: ORCA 安装目录。
 		input_file_path: 输入文件所在的路径。
 		input_name: 输入文件的基本名称（不包括扩展名），默认是 'input'。
 		output_name: 输出结果文件的基本名称（不包括扩展名），默认是 'result'。
@@ -38,7 +37,7 @@ def make_molden(ORCA_ins_path, input_file_path, name='input') -> None:
 	"""生成 Molden 文件并将其复制并重命名。
 
 	Args:
-		ORCA_ins_path: ORCA 可执行文件的路径。
+		ORCA_ins_path: ORCA 安装目录。
 		input_file_path: 输入文件所在的路径。
 		name: 输入文件的基本名称（不包括扩展名），默认是 'input'。
 	"""
@@ -83,7 +82,7 @@ def set_nprocs(input_file_path, jobs=1):
 
 
 def set_maxcore(input_file_path, maxcore=500):
-	"""替换或添加 %maxcore 内容以设置最大内存使用量。一个核心的最大内存使用量，500MB 是 calfun 的默认值
+	"""一个核心的最大内存使用量
 
 	Args:
 		input_file_path: 输入文件的路径。
@@ -112,7 +111,7 @@ def set_location(input_file_path, location=''):
 
 	Args:
 		input_file_path: 输入文件的路径。
-		location: 要插入的位置描述，默认是一组坐标。
+		location: 要分析的物质的原子的位置描述，默认是 H2O 的笛卡尔坐标。
 	"""
 	if not location: location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
 	new_content = f'{location}\n'  # 去除多余空格并添加换行符

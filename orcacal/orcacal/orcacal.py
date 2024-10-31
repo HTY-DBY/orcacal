@@ -1,7 +1,9 @@
 import os
-import re
 import shutil
 import subprocess
+
+from rdkit import Chem
+from rdkit.Chem import AllChem
 
 from orcacal.AssistFun import delete_and_add_block, update_file_section
 
@@ -27,8 +29,8 @@ def run(ORCA_ins_path, input_file_path, input_name='input', output_name='result'
 		subprocess.run(cmd, shell=True, check=True)
 		print(f'{temp_name} 完成')
 	except subprocess.CalledProcessError as e:
-		print(f'{temp_name} 失败')
-		print(e)
+		print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
+		print(f'错误输出: {e.output}')
 	except Exception as e:
 		print('发生未知错误:')
 		print(e)
@@ -62,8 +64,8 @@ def make_molden(ORCA_ins_path, input_file_path, name='input') -> None:
 
 		print(f'{temp_name} 完成')
 	except subprocess.CalledProcessError as e:
-		print(f'{temp_name} 失败')
-		print(e)
+		print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
+		print(f'错误输出: {e.output}')
 	except Exception as e:
 		print('发生未知错误')
 		print(e)
@@ -101,7 +103,8 @@ def set_calfun(input_file_path, calfun=''):
 		input_file_path: 输入文件的路径。
 		calfun: 要设置的计算方法字符串，默认为 '! HF DEF2-SVP LARGEPRINT'。
 	"""
-	if not calfun: calfun = '! HF DEF2-SVP LARGEPRINT'
+	if not calfun:
+		calfun = '! HF DEF2-SVP LARGEPRINT'
 	new_maxcore_line = f'{calfun}\n'
 	pattern = r'^\s*!.*$'
 	update_file_section(input_file_path, pattern, new_maxcore_line, position='start')
@@ -114,12 +117,67 @@ def set_location(input_file_path, location=''):
 		input_file_path: 输入文件的路径。
 		location: 要分析的物质的原子的位置描述，默认是 H2O 的笛卡尔坐标。
 	"""
-	if not location: location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
+	if not location:
+		location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
 	new_content = f'{location}\n'  # 去除多余空格并添加换行符
 	pattern = r'\*\s*xyz.*?\*'
 
 	# 删除匹配的块，并插入新内容到文件的末尾
 	delete_and_add_block(input_file_path, pattern, new_content, position='end')
+	print(f'The position of the atom is updated to:\n{location}\n')
+
+
+def calculate_multiplicity(mol):
+	"""根据分子的未配对电子数量计算自旋多重度。
+
+	Args:
+		mol: RDKit 分子对象。
+
+	Returns:
+		int: 计算得到的自旋多重度。
+	"""
+	num_unpaired = 0  # 初始化未配对电子数量
+	for atom in mol.GetAtoms():
+		# 计算每个原子的未配对电子数量并累加
+		num_unpaired += atom.GetNumRadicalElectrons()
+	return 1 + num_unpaired  # 自旋多重度为未配对电子数量加 1
+
+
+def generate_xyz(smiles: str, charge: int = None, multiplicity: int = None, randomSeed: int = 42) -> str:
+	"""从 SMILES 创建分子对象并生成带电荷和自旋多重度的笛卡尔坐标系 (xyz)。
+
+	Args:
+		smiles: 分子的 SMILES 表示。
+		charge: 分子的电荷，默认为 None。会根据分子计算。
+		multiplicity: 分子的自旋多重度，默认为 None。会根据分子计算。
+		randomSeed: 生成 3D 坐标时的随机种子，默认为 42。
+
+	Returns:
+		str: 笛卡尔坐标系 (xyz)，包含电荷和自旋多重度信息。
+	"""
+	# 从 SMILES 创建分子对象，并添加氢原子
+	mol = Chem.AddHs(Chem.MolFromSmiles(smiles))
+
+	# 生成 3D 坐标并优化分子几何结构
+	AllChem.EmbedMolecule(mol, randomSeed=randomSeed)
+	AllChem.UFFOptimizeMolecule(mol)
+
+	# 如果没有提供电荷，则计算分子的电荷
+	if charge is None:
+		charge = Chem.rdmolops.GetFormalCharge(mol)
+	# 如果没有提供自旋多重度，则计算分子的自旋多重度
+	if multiplicity is None:
+		multiplicity = calculate_multiplicity(mol)
+
+	# 提取原子坐标并格式化为字符串
+	atom_coords = [
+		f"{atom.GetSymbol()} {pos.x:.6f} {pos.y:.6f} {pos.z:.6f}"
+		for atom in mol.GetAtoms()
+		for pos in [mol.GetConformer().GetAtomPosition(atom.GetIdx())]
+	]
+
+	# 生成带电荷和多重度的 笛卡尔坐标系 (xyz)
+	return f"* xyz {charge} {multiplicity}\n{chr(10).join(atom_coords)}\n*"
 
 
 if __name__ == "__main__":
