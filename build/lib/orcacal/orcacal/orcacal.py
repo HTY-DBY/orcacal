@@ -83,7 +83,7 @@ def set_nprocs(input_file_path, jobs=1):
 
 
 def set_maxcore(input_file_path, maxcore=500):
-	"""替换或添加 %maxcore 内容以设置最大内存使用量。
+	"""替换或添加 %maxcore 内容以设置最大内存使用量。一个核心的最大内存使用量，500MB 是 calfun 的默认值
 
 	Args:
 		input_file_path: 输入文件的路径。
@@ -114,7 +114,7 @@ def set_location(input_file_path, location=''):
 		input_file_path: 输入文件的路径。
 		location: 要插入的位置描述，默认是一组坐标。
 	"""
-	if not location: location = "* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*"
+	if not location: location = f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*'
 	new_content = f'{location}\n'  # 去除多余空格并添加换行符
 	pattern = r'\*\s*xyz.*?\*'
 

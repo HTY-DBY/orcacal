@@ -1,18 +1,18 @@
 <h1 align="center">
 <img src="https://i.postimg.cc/wjY6JGFL/image.png" width="100">
 </h1>
+
 # 1. 前言
-# 2. 说明
 
 `orcacal` 是一个用于通过 Python 调用 ORCA 软件进行计算的库。它封装了常用的计算方法，方便用户在化学计算和模拟中使用。该库旨在简化用户与 ORCA 之间的交互，并提供一个直观的接口来进行各种化学计算。
 
-## 2.1. 特性
+## 1.1. 特性
 
 - 封装 ORCA 常用计算方法，便于调用和使用
 - 提供方便的数据获取、处理和化学特性计算
 - 简化的 API 设计，易于上手
 
-# 3. 安装
+# 2. 安装
 
 你可以通过以下方式安装 `orcacal`：
 
@@ -28,9 +28,9 @@ pip install orcacal
 conda install orcacal
 ```
 
-# 4. 使用示例
+# 3. 使用示例
 
-## 4.1. 简单运行
+## 3.1. 简单运行
 
 ```python
 import orcacal
@@ -60,7 +60,7 @@ print(homo_Lumo_eV)
 
 ```
 
-## 4.2. 对 input.inp 的内容进行自定义
+## 3.2. 对 input.inp 的内容进行自定义
 
 ```python
 import orcacal
@@ -87,10 +87,10 @@ orcacal.set_nprocs(input_file_path, jobs='! HF DEF2-SVP LARGEPRINT')
 orcacal.run(ORCA_ins_path=ORCA_ins_path, input_file_path=input_file_path)
 ```
 
-# 5. 在开发的功能
+# 4. 在开发的功能
 
 吉布斯能量变换和换算，福井指数
 
-# 6. Star History
+# 5. Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=HTY-DBY/orcacal&type=Date)](https://star-history.com/#HTY-DBY/orcacal&Date)

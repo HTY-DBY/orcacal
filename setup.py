@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 # 设置包信息
 setuptools.setup(
     name="orcacal",  # 包名
-    version="0.0.19",  # 版本号
+    version="0.0.20",  # 版本号
     author="hty2dby",  # 作者名称
     author_email="hty@hty.ink",  # 作者电子邮件
     description="test",  # 简短描述
