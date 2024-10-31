@@ -9,7 +9,7 @@ from orcacal.AssistFun import delete_and_add_block, update_file_section
 
 
 def run(ORCA_ins_path: Path, input_file_path: Path, input_name: str = 'input', output_name: str = 'result') -> None:
-	"""执行 ORCA 计算并将输出结果保存到指定文件。
+	"""执行 ORCA 计算，输出结果保存到同目录下的 result.out 中。
 
 	Args:
 		ORCA_ins_path (Path): ORCA 安装目录。

@@ -11,7 +11,7 @@ def homo_Lumo_eV(input_file_path: Path, output_name: str = 'result') -> list or 
 		output_name (str): 输出文件的名称，不包含扩展名，默认为 'result'。
 
 	Returns:
-		list or None: 包含 HOMO 和 LUMO 能量值及其差值的列表；如果未找到数据，则返回 None。
+		list or None: [HOMO, LUMO]，包含 HOMO 和 LUMO 能量值的列表；如果未找到数据，则返回 None。
 	"""
 	# 读取输出文件内容
 	with open(input_file_path / f'{output_name}.out', 'r') as file:
