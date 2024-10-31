@@ -125,7 +125,7 @@ ORCA_ins_path = f"D:\hty\ins\ORCA_6"
 orcacal.make_molden(ORCA_ins_path, input_file_path)
 ```
 
-## 其他说明
+## 3.4. 其他说明
 
 输入的文件的命名不一定需要是 input.xxx，但这是默认值，同理输出也不一定命名为 result.xxx，可以查看相应方法的 API，基本都提供了修改方案
 
