@@ -36,7 +36,7 @@ def update_file_section(input_file_path, pattern, new_line, position='end'):
 	write_file_lines(input_file, lines)
 
 
-def delete_and_add_block(input_file_path, pattern, new_content, position=None):
+def delete_and_add_block(input_file_path, pattern, new_content, position='end'):
 	"""删除匹配的内容块，并在指定位置添加新内容。"""
 	input_file = os.path.join(input_file_path, 'input.inp')
 	lines = read_file_lines(input_file)
@@ -57,7 +57,7 @@ def delete_and_add_block(input_file_path, pattern, new_content, position=None):
 		print("新内容已存在，不再插入。")
 		return  # 如果已存在，直接返回
 
-	if position is None or position >= len(modified_lines):
+	if position == 'end':
 		# 默认添加到末尾
 		modified_lines.extend(new_lines)
 	else:
