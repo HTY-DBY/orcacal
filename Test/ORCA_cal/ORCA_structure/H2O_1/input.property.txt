@@ -22,7 +22,7 @@ $End
 $SCF_Energy
    &GeometryIndex 1
    &ListStatus       OUT
-   &SCF_ENERGY [&Type "Double"]      -7.5959340313463670e+01
+   &SCF_ENERGY [&Type "Double"]      -7.5959340313463571e+01
 $End
 $Mulliken_Population_Analysis
    &GeometryIndex 1
@@ -37,9 +37,9 @@ $Mulliken_Population_Analysis
    &ATOMICCHARGES [&Type "ArrayOfDoubles", &Dim (3,1)] 
                                                          0
 
-0                                      8.5702301260302183e-01
-1                                      7.1488493698486991e-02
-2                                      7.1488493698488836e-02
+0                                      8.5702301260304248e-01
+1                                      7.1488493698475514e-02
+2                                      7.1488493698479441e-02
 $End
 $Loewdin_Population_Analysis
    &GeometryIndex 1
@@ -54,9 +54,9 @@ $Loewdin_Population_Analysis
    &ATOMICCHARGES [&Type "ArrayOfDoubles", &Dim (3,1)] 
                                                          0
 
-0                                      8.8985454296033639e-01
-1                                      5.5072728519838215e-02
-2                                      5.5072728519838646e-02
+0                                      8.8985454296034039e-01
+1                                      5.5072728519831970e-02
+2                                      5.5072728519838278e-02
 $End
 $Mayer_Population_Analysis
    &GeometryIndex 1
@@ -67,8 +67,8 @@ $Mayer_Population_Analysis
    &BONDORDERS [&Type "ArrayOfDoubles", &Dim (2,1)] "The bond orders"
                                                          0
 
-0                                      9.8775799324812186e-01
-1                                      9.8775799324812419e-01
+0                                      9.8775799324812508e-01
+1                                      9.8775799324812941e-01
    &COMPONENTS [&Type "ArrayOfIntegers", &Dim (2,4)] "The indices and atomic numbers of the bonding atoms"
                                                          0                           1                           2                           3
 
@@ -83,9 +83,9 @@ $Mayer_Population_Analysis
    &NA [&Type "ArrayOfDoubles", &Dim (3,1)] "Mulliken gross atomic population"
                                                          0
 
-0                                      8.3761998375400815e+00
-1                                      8.1190008122996882e-01
-2                                      8.1190008122997781e-01
+0                                      8.3761998375403799e+00
+1                                      8.1190008122981783e-01
+2                                      8.1190008122982338e-01
    &ZA [&Type "ArrayOfDoubles", &Dim (3,1)] "Total nuclear charge"
                                                          0
 
@@ -95,21 +95,21 @@ $Mayer_Population_Analysis
    &QA [&Type "ArrayOfDoubles", &Dim (3,1)] "Mulliken gross atomic charge"
                                                          0
 
-0                                     -3.7619983754008146e-01
-1                                      1.8809991877003118e-01
-2                                      1.8809991877002219e-01
+0                                     -3.7619983754037989e-01
+1                                      1.8809991877018217e-01
+2                                      1.8809991877017662e-01
    &VA [&Type "ArrayOfDoubles", &Dim (3,1)] "Mayer's total valence"
                                                          0
 
-0                                      1.9755159864961955e+00
-1                                      9.9550527864658689e-01
-2                                      9.9550527864659244e-01
+0                                      1.9755159864962173e+00
+1                                      9.9550527864657667e-01
+2                                      9.9550527864658189e-01
    &BVA [&Type "ArrayOfDoubles", &Dim (3,1)] "Mayer's bonded valence"
                                                          0
 
-0                                      1.9755159864962462e+00
-1                                      9.9550527864659222e-01
-2                                      9.9550527864659444e-01
+0                                      1.9755159864962550e+00
+1                                      9.9550527864658089e-01
+2                                      9.9550527864658533e-01
    &FA [&Type "ArrayOfDoubles", &Dim (3,1)] "Mayer's free valence"
                                                          0
 
@@ -131,7 +131,7 @@ $Calculation_Info
    &NUMOFAUXJBASISFUNCTS [&Type "Integer"] 0
    &NUMOFAUXJKBASISFUNCTS [&Type "Integer"] 0
    &NUMOFCABSBASISFUNCTS [&Type "Integer"] 0
-   &TOTALENERGY [&Type "Double"]      -7.5959340313463670e+01  "Hartrees"
+   &TOTALENERGY [&Type "Double"]      -7.5959340313463571e+01  "Hartrees"
 $End
 $SCF_Dipole_Moment
    &GeometryIndex 1
@@ -148,7 +148,7 @@ $SCF_Dipole_Moment
 
 0                                      0.0000000000000000e+00
 1                                      0.0000000000000000e+00
-2                                      1.1911117047747437e-01
+2                                      1.1911117047664517e-01
    &DIPOLENUCCONTRIB [&Type "ArrayOfDoubles", &Dim (3,1)] "Nuclear contribution"
                                                          0
 
@@ -160,6 +160,6 @@ $SCF_Dipole_Moment
 
 0                                      0.0000000000000000e+00
 1                                      0.0000000000000000e+00
-2                                     -8.1296627065553950e-01
-   &DIPOLEMAGNITUDE [&Type "Double", &Units "a.u."]       8.1296627065553950e-01
+2                                     -8.1296627065636862e-01
+   &DIPOLEMAGNITUDE [&Type "Double", &Units "a.u."]       8.1296627065636862e-01
 $End

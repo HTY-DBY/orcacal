@@ -1,7 +1,6 @@
 import os
 import orcacal
-from Goble.GSet import GSet_init
-import re
+from Test.Goble.GSet import GSet_init
 
 GSet = GSet_init()
 
