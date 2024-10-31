@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: orcacal
+Version: 0.0.19
+Summary: test
+Home-page: https://github.com/HTY-DBY/orcacal
+Author: hty2dby
+Author-email: hty@hty.ink
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+<h1 align="center">
+<img src="https://i.postimg.cc/wjY6JGFL/image.png" width="100">
+</h1>
+
+# 1. 说明
+
+更新中 使用 python 调用 ORCA 进行计算，并封装了常用计算方法，
+
+# 2. Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=HTY-DBY/orcacal&type=Date)](https://star-history.com/#HTY-DBY/orcacal&Date)

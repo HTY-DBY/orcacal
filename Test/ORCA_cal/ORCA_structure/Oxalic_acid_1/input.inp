@@ -1,0 +1,16 @@
+! B3LYP D3 def2-TZVP(-f) def2/J RIJCOSX tightSCF miniprint nopop LARGEPRINT
+
+%maxcore  2000
+%pal nprocs  20 end
+
+* xyz 0 1
+   O        1.42427        1.15191       -0.00003
+   O       -1.42424       -1.15187        0.00004
+   O        1.34078       -1.06637        0.00001
+   O       -1.34074        1.06640       -0.00001
+   C        0.73627       -0.00617       -0.00001
+   C       -0.73623        0.00620        0.00000
+*
+
+
+
