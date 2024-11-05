@@ -100,7 +100,7 @@ orcacal.run(ORCA_ins_path=ORCA_ins_path, input_file_path=input_file_path)
 ```python
 import orcacal
 
-atom_coords = orcacal.generate_xyz("O")
+atom_coords = orcacal.generate_xyzLocation("O")
 print(atom_coords)
 
 # atom_coords:

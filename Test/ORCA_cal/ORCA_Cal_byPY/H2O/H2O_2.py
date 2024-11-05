@@ -7,7 +7,7 @@ GSet = GSet_init()
 
 input_file_path = os.path.join(GSet.ORCA_cal_test_structure, os.path.splitext(os.path.basename(__file__))[0])
 
-atom_coords = orcacal.generate_xyz("O")
+atom_coords = orcacal.generate_xyzLocation("O")
 
 orcacal.set_location(input_file_path, location=atom_coords)
 

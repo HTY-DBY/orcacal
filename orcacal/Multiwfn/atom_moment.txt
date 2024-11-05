@@ -1,0 +1,35 @@
+ Atom     1 (C )
+ Atomic dipole moment:   -0.005655   -0.005145    0.014189
+ Information of atomic quadrupole moment (Traceless Cartesian):
+ Eigenvalue 1:   -0.072130  Eigenvector:    0.797005   -0.597914    0.085330
+ Eigenvalue 2:   -0.070083  Eigenvector:    0.505146    0.737352    0.448487
+ Eigenvalue 3:    0.142213  Eigenvector:   -0.331075   -0.314342    0.889707
+ 
+ Atom     2 (Cl)
+ Atomic dipole moment:   -0.025588    0.038166    0.014553
+ Information of atomic quadrupole moment (Traceless Cartesian):
+ Eigenvalue 1:   -0.358866  Eigenvector:   -0.816514   -0.380408   -0.434274
+ Eigenvalue 2:   -0.297098  Eigenvector:   -0.137149   -0.602874    0.785960
+ Eigenvalue 3:    0.655964  Eigenvector:    0.560798   -0.701308   -0.440082
+ 
+ Atom     3 (Cl)
+ Atomic dipole moment:   -0.025306   -0.039060   -0.012241
+ Information of atomic quadrupole moment (Traceless Cartesian):
+ Eigenvalue 1:   -0.358943  Eigenvector:   -0.819299    0.563687   -0.104913
+ Eigenvalue 2:   -0.296940  Eigenvector:   -0.138228   -0.016603    0.990261
+ Eigenvalue 3:    0.655884  Eigenvector:   -0.556456   -0.825821   -0.091520
+ 
+ Atom     4 (Cl)
+ Atomic dipole moment:    0.041420   -0.007985    0.023129
+ Information of atomic quadrupole moment (Traceless Cartesian):
+ Eigenvalue 1:   -0.359092  Eigenvector:    0.001538   -0.944803   -0.327635
+ Eigenvalue 2:   -0.297031  Eigenvector:    0.645845    0.251077   -0.721002
+ Eigenvalue 3:    0.656124  Eigenvector:   -0.763467    0.210493   -0.610583
+ 
+ Atom     5 (H )
+ Atomic dipole moment:    0.063025    0.059439   -0.170719
+ Information of atomic quadrupole moment (Traceless Cartesian):
+ Eigenvalue 1:   -0.004997  Eigenvector:   -0.308386   -0.275203    0.910583
+ Eigenvalue 2:    0.002276  Eigenvector:    0.871908   -0.464524    0.154896
+ Eigenvalue 3:    0.002721  Eigenvector:    0.380360    0.841713    0.383204
+ 

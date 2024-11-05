@@ -1,6 +1,6 @@
 import orcacal
 
-atom_coords = orcacal.generate_xyz("O")
+atom_coords = orcacal.generate_xyzLocation("O")
 print(atom_coords)
 
 # atom_coords:
