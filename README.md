@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.postimg.cc/wjY6JGFL/image.png" width="100">
+<img src="https://i.postimg.cc/wjY6JGFL/image.png" width="30">
 </h1>
 
 # 1. 前言
