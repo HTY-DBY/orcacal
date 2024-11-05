@@ -41,56 +41,51 @@ H2O_1/
 ## 3.1. 简单运行和获取输出
 
 ```python
+import os
 import orcacal
+from Test.Goble.GSet import GSet_init
 
-# input_file_path = "运行的项目路径 H2O_1"
-# ORCA_ins_path = "ORCA 的安装路径，请勿输入可执行文件的路径"
-input_file_path = f"D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\H2O_1"
-ORCA_ins_path = f"D:\hty\ins\ORCA_6"
+GSet = GSet_init()
 
-# 运行 ORCA 文件 input.inp
-orcacal.run(ORCA_ins_path, input_file_path)
+input_file_path = os.path.join(
+	GSet.ORCA_cal_test_structure, os.path.splitext(os.path.basename(__file__))[0]
+)
+# %%
 
-# 输出偶极矩 (Debye)
-# 返回 list [总偶极矩, X方向的偶极矩，Y方向的偶极矩，Z方向的偶极矩]
-dipolemoment_Debye = orcacal.get.dipolemoment_Debye(input_file_path)
-print(dipolemoment_Debye)
+project = orcacal.init(GSet.ORCA_ins_path, input_file_path)  # 初始化计算类
 
-# 输出单点能量
-single_point_energy_Debye = orcacal.get.single_point_energy_Debye(input_file_path)
-print(single_point_energy_Debye)
+calfun = '! HF DEF2-SVP LARGEPRINT'  # 设置计算方法
+maxcore = 400  # 设置每个核心的最大内存使用量
+nprocs = -1  # 设置使用的核心数
+location = orcacal.generate_xyzLocation('C(Cl)(Cl)C')  # 设置原子位置
 
-# 输出 前线轨道 HOMO, LUMO
-# 返回 list [HOMO, LUMO]
-homo_Lumo_eV = orcacal.get.homo_Lumo_eV(input_file_path)
-print(homo_Lumo_eV)
-```
+project.general_set({
+	'calfun': calfun,
+	'nprocs': nprocs,
+	'maxcore': maxcore,
+	'location': location
+})
 
-## 3.2. 对 input.inp 的内容进行自定义
+# 一样的方法，只不过分开设置了
+# project.set_calfun(calfun)
+# project.set_location(location)
+# project.set_nprocs(nprocs)
+# project.set_maxcore(maxcore)
 
-```python
-import orcacal
+project.run()
 
-# input_file_path = '运行的项目路径 H2O_1'
-# ORCA_ins_path = 'ORCA 的安装路径，请勿输入可执行文件的路径'
-input_file_path = f"D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\H2O_1"
-ORCA_ins_path = f"D:\hty\ins\ORCA_6"
+# %%
 
-# 设置计算方法，! HF DEF2-SVP LARGEPRINT，这是 calfun 的默认值
-orcacal.set_calfun(input_file_path, calfun=f'! HF DEF2-SVP LARGEPRINT')
+# 获取 [HOMO, LUMO]
+[HOMO, LUMO] = project.get.homo_Lumo_eV()
+print(f'HOMO: {HOMO} eV, LUMO: {LUMO} eV')
+# 获取单点能
+single_point_energy_Debye = project.get.single_point_energy_Debye()
+print(f'single_point_energy_Debye: {single_point_energy_Debye:.5f} Debye')
+# 获取偶极矩
+dipolemoment_Debye = project.get.dipolemoment_Debye()
+print(f'dipolemoment_Debye:\nTotal--{dipolemoment_Debye[0]:.5f}, X-{dipolemoment_Debye[1]:.5f}, Y-{dipolemoment_Debye[2]:.5f}, Z-{dipolemoment_Debye[3]:.5f} Debye')
 
-# 设置待分析物质的几何空间位置，H2O 的笛卡尔坐标是 location 的默认值
-orcacal.set_location(input_file_path, location=f'* xyz 0 1\nO   0.0000   0.0000   0.0626\nH  -0.7920   0.0000  -0.4973\nH   0.7920   0.0000  -0.4973\n*')
-# 建议使用 orcacal.generate_xyz 从 SMILES 获取坐标，见后文
-
-# 设置一个核心的最大内存使用量，500MB 是 maxcore 的默认值
-orcacal.set_maxcore(input_file_path, maxcore=500)
-
-# 设置并行计算的处理器数量，1 是 jobs 的默认值，-1 表示使用全部核心数
-orcacal.set_nprocs(input_file_path, jobs='1')
-
-# 运行 ORCA 文件 input.inp
-orcacal.run(ORCA_ins_path=ORCA_ins_path, input_file_path=input_file_path)
 ```
 
 ## 3.3. 便利性的操作
@@ -114,15 +109,7 @@ print(atom_coords)
 ### 3.3.2. 生成 Molden 文件用于载入其他软件
 
 ```python
-import orcacal
-
-# 经过 ORCA 计算得到 input.gbw 后才能生成，否则报错
-# input_file_path = '运行的项目路径 H2O_1'
-# ORCA_ins_path = 'ORCA 的安装路径，请勿输入可执行文件的路径'
-input_file_path = f"D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\H2O_1"
-ORCA_ins_path = f"D:\hty\ins\ORCA_6"
-
-orcacal.make_molden(ORCA_ins_path, input_file_path)
+----
 ```
 
 ## 3.4. 其他说明

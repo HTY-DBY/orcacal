@@ -8,6 +8,7 @@ input_file_path = os.path.join(
 	GSet.ORCA_cal_test_structure, os.path.splitext(os.path.basename(__file__))[0]
 )
 # %%
+
 project = orcacal.init(GSet.ORCA_ins_path, input_file_path)  # 初始化计算类
 
 calfun = '! HF DEF2-SVP LARGEPRINT'  # 设置计算方法
@@ -28,7 +29,7 @@ project.general_set({
 # project.set_nprocs(nprocs)
 # project.set_maxcore(maxcore)
 
-# project.run()
+project.run()
 
 # %%
 

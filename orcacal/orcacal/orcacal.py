@@ -48,6 +48,37 @@ def generate_xyzLocation(smiles: str, charge: int = None, multiplicity: int = No
 	return location
 
 
+def make_molden(input_file_path, input_name, ORCA_2mkl_path) -> None:
+	"""生成 Molden 文件并将其复制并重命名。
+
+	Args:
+	"""
+	input_file = os.path.join(input_file_path, input_name)
+	cmd = f'"{ORCA_2mkl_path}" "{input_file}" -molden'
+	temp_name = 'molden 文件生成'
+
+	try:
+		print(f'开始 {temp_name}...')
+		subprocess.run(cmd, shell=True, check=True)
+
+		old_file = os.path.join(input_file_path, f'{input_name}.molden.input')
+		new_file = os.path.join(input_file_path, f'{input_name}.molden')
+
+		if os.path.exists(old_file):
+			print(f'复制并重命名 {input_name}.molden.input 为 {input_name}.molden')
+			shutil.copy(old_file, new_file)
+		else:
+			print(f'{input_name}.molden.input 文件不存在，无法复制。')
+
+		print(f'{temp_name} 完成')
+	except subprocess.CalledProcessError as e:
+		print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
+		print(f'错误输出: {e.output}')
+	except Exception as e:
+		print('发生未知错误')
+		print(e)
+
+
 class init():
 
 	def __init__(self, ORCA_ins_path: Path or str, input_file_path: Path or str,
@@ -80,7 +111,7 @@ class init():
 		# function
 		self.get = self.get(self)
 
-	def run(self, make_molden=True) -> None:
+	def run(self, make_molden_do=True) -> None:
 		"""执行 ORCA 计算，输出结果保存到同目录下的 output.out 中。
 
 		Args:
@@ -95,42 +126,12 @@ class init():
 			print(f'开始 {temp_name}...')
 			subprocess.run(cmd, shell=True, check=True)
 			print(f'{temp_name} 完成')
-			if make_molden: self.make_molden()
+			if make_molden_do: make_molden(self.input_file_path, self.input_name, self.ORCA_2mkl_path)
 		except subprocess.CalledProcessError as e:
 			print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
 			print(f'错误输出: {e.output}')
 		except Exception as e:
 			print('发生未知错误:')
-			print(e)
-
-	def make_molden(self) -> None:
-		"""生成 Molden 文件并将其复制并重命名。
-
-		Args:
-		"""
-		input_file = os.path.join(self.input_file_path, self.input_name)
-		cmd = f'"{self.ORCA_2mkl_path}" "{input_file}" -molden'
-		temp_name = 'molden 文件生成'
-
-		try:
-			print(f'开始 {temp_name}...')
-			subprocess.run(cmd, shell=True, check=True)
-
-			old_file = os.path.join(self.input_file_path, f'{self.input_name}.molden.input')
-			new_file = os.path.join(self.input_file_path, f'{self.input_name}.molden')
-
-			if os.path.exists(old_file):
-				print(f'复制并重命名 {self.input_name}.molden.input 为 {self.input_name}.molden')
-				shutil.copy(old_file, new_file)
-			else:
-				print(f'{self.input_name}.molden.input 文件不存在，无法复制。')
-
-			print(f'{temp_name} 完成')
-		except subprocess.CalledProcessError as e:
-			print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
-			print(f'错误输出: {e.output}')
-		except Exception as e:
-			print('发生未知错误')
 			print(e)
 
 	def set_location(self, location: str = generate_xyzLocation('C(Cl)(Cl)Cl')) -> None:
