@@ -2,6 +2,10 @@
 
 `orcacal` 是一个用于通过 Python 调用 ORCA 软件进行计算的库。它封装了常用的计算方法，方便用户在化学计算和模拟中使用。该库旨在简化用户与 ORCA 之间的交互，并提供一个直观的接口来进行各种化学计算。
 
+本人撰写的 ORCA 教程，包含 orcacal 使用示例：<https://blog.csdn.net/weixin_45756789/article/details/143421047>
+
+ORCA 和 orcacal 的视频教程：<https://space.bilibili.com/123772272>
+
 ## 1.1. 特性
 
 - 封装 ORCA 常用计算方法，便于调用和使用

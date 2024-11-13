@@ -15,18 +15,16 @@ Multiwfn 是开源免费的波函数分析程序，也提供许多重要的分�
 
 # 2. ORCA 的安装
 
-在 ORCA 官网 https://orcaforum.kofo.mpg.de/app.php/dlext/ 可下载最新的的 ORCA 安装包（需要全局魔法）。
-`必须注册账号`后，页面才会有各个版本的下载显示。截至 2024-11-13，已更新至 6.0.1 版本，该版本的具体需要下载的文件和安装方法见后文，
+在 ORCA 官网 <https://orcaforum.kofo.mpg.de/app.php/dlext/> 可下载最新的的 ORCA 安装包（需要全局魔法）。
+`必须注册账号`后，页面才会有各个版本的下载显示。截至 2024-11-13，已更新至 6.0.1 版本，该版本的具体需要下载的文件和安装方法见后文。由于你肯定会需要用到并行功能，所有我会连同并行方式一并讲解。
 
-由于你肯定会需要用到并行功能，所有我会连同并行方式一并讲解。
-
-在后文中，以 `{orcaIns}` 表示 orca 的安装路径。
+在本文中，以 `{orcaIns}` 表示 orca 的安装路径。
 
 ## 2.1. Windows 下安装
 
 在 ORCA 官网下载 `ORCA 6.0.1, Windows, 64bit, Installer`
 
-![](https://i-blog.csdnimg.cn/direct/99b6534ffc0b4ef2b3896fb513015f8c.png)
+![](https://i-blog.csdnimg.cn/direct/549800b332564d958b3f564561326666.png)
 
 解压由 `ORCA 6.0.1, Windows, 64bit, Installer` 下载的 `Orca6.0.1.Win64.zip`，双击 `Orca6.0.1.Win64.exe` 进行安装
 
@@ -48,7 +46,7 @@ H   0.7920   0.0000  -0.4973
 
 在当前目录下使用终端，运行 `{orcaIns}/orca input.inp > output.out`，未报错且目录下产生大量文件则表示 ORCA 安装成功
 
-在微软官网下载 https://www.microsoft.com/en-us/download/details.aspx?id=57467 下载 Microsoft MPI v10.0 的 `msmpisetup.exe`，安装
+在微软官网下载 <https://www.microsoft.com/en-us/download/details.aspx?id=57467> 下载 Microsoft MPI v10.0 的 `msmpisetup.exe`，安装
 
 在项目目录中新建 input.inp 文件，令其内容为
 
@@ -118,11 +116,11 @@ H   0.7920   0.0000  -0.4973
 
 ### 3.3.1. 密度泛函查询
 
-https://www.faccts.de/docs/orca/6.0/manual/contents/structure.html#density-functional-methods
+<https://www.faccts.de/docs/orca/6.0/manual/contents/structure.html#density-functional-methods>
 
 ### 3.3.2. 基组查询
 
-https://www.faccts.de/docs/orca/6.0/manual/contents/structure.html#basis-sets
+<https://www.faccts.de/docs/orca/6.0/manual/contents/structure.html#basis-sets>
 
 ### 3.3.3. RI 近似
 
