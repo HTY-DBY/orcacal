@@ -1,7 +1,3 @@
-<h1 align="center">
-<img src="https://i.postimg.cc/wjY6JGFL/image.png" width="50">
-</h1>
-
 # 1. 前言
 
 `orcacal` 是一个用于通过 Python 调用 ORCA 软件进行计算的库。它封装了常用的计算方法，方便用户在化学计算和模拟中使用。该库旨在简化用户与 ORCA 之间的交互，并提供一个直观的接口来进行各种化学计算。
@@ -14,18 +10,8 @@
 
 # 2. 安装
 
-你可以通过以下方式安装 `orcacal`：
-
-`pip`
-
 ```bash
-pip install orcacal
-```
-
-`conda`
-
-```bash
-conda install orcacal
+pip install orcacal  --upgrade
 ```
 
 # 3. 使用示例
@@ -34,7 +20,6 @@ conda install orcacal
 
 ```
 H2O_1/
-│
 │── input.inp
 ```
 
