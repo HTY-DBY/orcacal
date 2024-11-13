@@ -5,13 +5,13 @@ from pathlib import Path
 
 def read_file_lines(file_path):
 	"""读取文件中的所有行。"""
-	with open(file_path, 'r') as file:
+	with open(file_path, 'r', encoding='utf-8') as file:
 		return file.readlines()
 
 
 def write_file_lines(file_path, lines):
 	"""将行写入文件。"""
-	with open(file_path, 'w') as file:
+	with open(file_path, 'w', encoding='utf-8') as file:
 		file.writelines(lines)
 
 

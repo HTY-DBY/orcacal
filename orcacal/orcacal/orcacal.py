@@ -95,8 +95,8 @@ class init():
 		self.input_file_path = input_file_path
 		self.input_name = input_name
 		self.output_name = output_name
-		self.ORCA_main_path = os.path.join(self.ORCA_ins_path, 'orca.exe')
-		self.ORCA_2mkl_path = os.path.join(self.ORCA_ins_path, 'orca_2mkl.exe')
+		self.ORCA_main_path = os.path.join(self.ORCA_ins_path, 'orca')
+		self.ORCA_2mkl_path = os.path.join(self.ORCA_ins_path, 'orca_2mkl')
 
 		# 检查并创建 input_file_path
 		if not os.path.exists(self.input_file_path):
@@ -105,7 +105,7 @@ class init():
 		input_file = os.path.join(self.input_file_path, f"{self.input_name}.inp")
 		if not os.path.exists(input_file):
 			with open(input_file, 'w') as f:
-				f.write("# Creat by orcacal")
+				f.write("# Creat by orcacal\n")
 			print(f"初始 input.inp 已创建。")
 
 		# function
@@ -119,20 +119,41 @@ class init():
 		input_file = os.path.join(self.input_file_path, f'{self.input_name}.inp')
 		output_file = os.path.join(self.input_file_path, f'{self.output_name}.out')
 
-		cmd = f'"{self.ORCA_main_path}" "{input_file}" > "{output_file}"'
+		cmd = f'"{self.ORCA_main_path}" "{input_file}"  > "{output_file}"'
 		temp_name = 'ORCA 计算'
 
-		try:
-			print(f'开始 {temp_name}...')
-			subprocess.run(cmd, shell=True, check=True)
-			print(f'{temp_name} 完成')
-			if make_molden_do: make_molden(self.input_file_path, self.input_name, self.ORCA_2mkl_path)
-		except subprocess.CalledProcessError as e:
-			print(f'{temp_name} 失败: {e.cmd} 返回码: {e.returncode}')
-			print(f'错误输出: {e.output}')
-		except Exception as e:
-			print('发生未知错误:')
-			print(e)
+		max_attempts = 3  # 总尝试次数
+		success = False  # 标记计算是否成功
+
+		for attempt in range(max_attempts):
+			try:
+				if attempt == 0:
+					print(f'开始 {temp_name}')
+				else:
+					print(f'开始 {temp_name} (尝试 {attempt + 1}/{max_attempts})...')
+
+				print(f'input_file_path: {self.input_file_path}')
+				print(f'command:\n{cmd}')
+				subprocess.run(cmd, shell=True, check=True)
+				print(f'{temp_name} 完成')
+				if make_molden_do:
+					make_molden(self.input_file_path, self.input_name, self.ORCA_2mkl_path)
+				success = True  # 标记成功
+				break  # 成功后退出循环
+			except subprocess.CalledProcessError as e:
+				print(f'{temp_name} 失败: {e.cmd}')
+				print(f'返回码: {e.returncode}')
+				print(f'错误输出: {e.output}')
+				if attempt < max_attempts - 1:  # 如果不是最后一次尝试，输出重试信息
+					print('正在重试...')
+			except Exception as e:
+				print('发生未知错误:')
+				print(e)
+				break  # 遇到未知错误时退出循环
+
+		# 如果所有尝试都失败，输出错误信息
+		if not success:
+			print(f'{temp_name} 最终失败，所有尝试均未成功。')
 
 	def set_location(self, location: str = generate_xyzLocation('C(Cl)(Cl)Cl')) -> None:
 		"""匹配文件中两个 ** 之间的内容并插入新的位置描述。

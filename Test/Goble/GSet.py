@@ -4,7 +4,13 @@ from dataclasses import dataclass
 
 @dataclass
 class GSet:
-	ORCA_ins_path: str = r"D:\hty\ins\ORCA_6"
+	if os.name == 'posix':  # Linux
+		ORCA_ins_path = r"/home/hty/ins/orca_6_0_0"
+	elif os.name == 'nt':  # Windows
+		ORCA_ins_path = r"D:\hty\ins\ORCA_6"
+	else:
+		print('该平台不支持\nThe platform is not supported')
+
 	ORCA_main_path: str = ""
 	ORCA_2mkl_path: str = ""
 

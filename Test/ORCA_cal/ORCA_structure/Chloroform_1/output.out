@@ -51,85 +51,97 @@
                 #########################################################
 
 
-                         Program Version 6.0.0  -   RELEASE   -
+                         Program Version 6.0.1  -  RELEASE   -
 
 
  With contributions from (in alphabetic order):
-   Daniel Aravena         : Magnetic Suceptibility
-   Michael Atanasov       : Ab Initio Ligand Field Theory (pilot matlab implementation)
-   Alexander A. Auer      : GIAO ZORA, VPT2 properties, NMR spectrum
-   Ute Becker             : All parallelization in ORCA, NUMFREQ, NUMCALC
-   Giovanni Bistoni       : ED, misc. LED, open-shell LED, HFLD
-   Martin Brehm           : Molecular dynamics
-   Dmytro Bykov           : pre 5.0 version of the SCF Hessian
-   Marcos Casanova-Páez   : Triplet and SCS-CIS(D). UHF-(DLPNO)-IP/EA/STEOM-CCSD. UHF-CVS-IP/STEOM-CCSD
-   Vijay G. Chilkuri      : MRCI spin determinant printing, contributions to CSF-ICE
-   Pauline Colinet        : FMM embedding
-   Dipayan Datta          : RHF DLPNO-CCSD density
-   Achintya Kumar Dutta   : EOM-CC, STEOM-CC
-   Nicolas Foglia         : Exact transition moments, OPA infrastructure, MCD improvements
-   Dmitry Ganyushin       : Spin-Orbit,Spin-Spin,Magnetic field MRCI
-   Miquel Garcia          : C-PCM and meta-GGA Hessian, CCSD/C-PCM, Gaussian charge scheme
-   Tiago L. C. Gouveia    : GS-ROHF, GS-ROCIS
-   Yang Guo               : DLPNO-NEVPT2, F12-NEVPT2, CIM, IAO-localization
-   Andreas Hansen         : Spin unrestricted coupled pair/coupled cluster methods
-   Ingolf Harden          : AUTO-CI MPn and infrastructure 
-   Benjamin Helmich-Paris : MC-RPA, TRAH-(SCF,CASSCF), AVAS, COSX integrals, SCF dyn. polar.
-   Lee Huntington         : MR-EOM, pCC
-   Robert Izsak           : Overlap fitted RIJCOSX, COSX-SCS-MP3, EOM
-   Riya Kayal             : Wick's Theorem for AUTO-CI, AUTO-CI UHF-CCSDT
-   Emily Kempfer          : AUTO-CI, RHF CISDT and CCSDT
-   Christian Kollmar      : KDIIS, OOCD, Brueckner-CCSD(T), CCSD density, CASPT2, CASPT2-K, improved NEVPT2
-   Axel Koslowski         : Symmetry handling
-   Simone Kossmann        : Meta GGA functionals, TD-DFT gradient, OOMP2, (MP2 Hessian; deprecated post 5.0)
-   Lucas Lang             : DCDCAS
-   Marvin Lechner         : AUTO-CI (C++ implementation), FIC-MRCC
-   Spencer Leger          : CASSCF response
-   Dagmar Lenk            : GEPOL surface, SMD, ORCA-2-JSON
-   Dimitrios Liakos       : Extrapolation schemes; Compound Job, initial MDCI parallelization
-   Dimitrios Manganas     : Further ROCIS development; embedding schemes. LFT, Crystal Embedding
-   Dimitrios Pantazis     : SARC Basis sets
-   Anastasios Papadopoulos: AUTO-CI, single reference methods and gradients
-   Taras Petrenko         : pre 6.0 DFT Hessian and TD-DFT gradient, (ASA, deprecated), ECA, 1-Electron XAS/XES, NRVS
-   Peter Pinski           : DLPNO-MP2, DLPNO-MP2 Gradient
-   Christoph Reimann      : Effective Core Potentials
-   Marius Retegan         : Local ZFS, SOC
-   Christoph Riplinger    : Optimizer, TS searches, QM/MM, DLPNO-CCSD(T), (RO)-DLPNO pert. Triples
-   Michael Roemelt        : Original ROCIS implementation
-   Masaaki Saitow         : Open-shell DLPNO-CCSD energy and density
-   Barbara Sandhoefer     : DKH picture change effects
-   Kantharuban Sivalingam : CASSCF convergence/infrastructure, NEVPT2 and variants, FIC-MRCI
-   Bernardo de Souza      : ESD, SOC TD-DFT
-   Georgi Stoychev        : AutoAux, RI-MP2 NMR, DLPNO-MP2 response, X2C
-   Van Anh Tran           : RI-MP2 g-tensors
-   Willem Van den Heuvel  : Paramagnetic NMR
-   Zikuan Wang            : NOTCH, Electric field optimization 
-   Frank Wennmohs         : Technical directorship and infrastructure
-   Hang Xu                : AUTO-CI-Response properties 
-
-
- We gratefully acknowledge several colleagues who have allowed us to
- interface, adapt or use parts of their codes:
-   Stefan Grimme, W. Hujo, H. Kruse, P. Pracht,  : VdW corrections, initial TS optimization,
-                  C. Bannwarth, S. Ehlert,         DFT functionals, gCP, sTDA/sTD-DF
-                  L. Wittmann, M. Mueller
-   Ed Valeev, F. Pavosevic, A. Kumar             : LibInt (2-el integral package), F12 methods
-   Garnet Chan, S. Sharma, J. Yang, R. Olivares  : DMRG
-   Ulf Ekstrom                                   : XCFun DFT Library
-   Mihaly Kallay                                 : mrcc  (arbitrary order and MRCC methods)
-   Frank Weinhold                                : gennbo (NPA and NBO analysis)
-   Simon Mueller                                 : openCOSMO-RS
-   Christopher J. Cramer and Donald G. Truhlar   : smd solvation model
-   Lars Goerigk                                  : TD-DFT with DH, B97 family of functionals
-   V. Asgeirsson, H. Jonsson                     : NEB implementation
-   FAccTs GmbH                                   : IRC, NEB, NEB-TS, DLPNO-Multilevel, CI-OPT
-                                                   MM, QMMM, 2- and 3-layer-ONIOM, Crystal-QMMM,
-                                                   LR-CPCM, SF, NACMEs, symmetry and pop. for TD-DFT,
-                                                   nearIR, NL-DFT gradient (VV10), updates on ESD,
-                                                   ML-optimized integration grids, MBIS, APM,
-                                                   GOAT, DOCKER, SOLVATOR, interface openCOSMO-RS
-   S Lehtola, MJT Oliveira, MAL Marques          : LibXC Library
-   Liviu Ungur et al                             : ANISO software
+[Max-Planck-Institut fuer Kohlenforschung]                               
+  Daniel Aravena         : Magnetic Suceptibility                        
+  Michael Atanasov       : Ab Initio Ligand Field Theory (pilot matlab implementation)
+  Alexander A. Auer      : GIAO ZORA, VPT2 properties, NMR spectrum      
+  Ute Becker             : All parallelization in ORCA, NUMFREQ, NUMCALC 
+  Giovanni Bistoni       : ED, misc. LED, open-shell LED, HFLD           
+  Martin Brehm           : Molecular dynamics                            
+  Dmytro Bykov           : pre 5.0 version of the SCF Hessian            
+  Marcos Casanova-Páez   : Triplet and SCS-CIS(D). UHF-(DLPNO)-IP/EA/STEOM-CCSD. UHF-CVS-IP/STEOM-CCSD   
+  Vijay G. Chilkuri      : MRCI spin determinant printing, contributions to CSF-ICE 
+  Pauline Colinet        : FMM embedding                                 
+  Dipayan Datta          : RHF DLPNO-CCSD density                        
+  Achintya Kumar Dutta   : EOM-CC, STEOM-CC                              
+  Nicolas Foglia         : Exact transition moments, OPA infrastructure, MCD improvements    
+  Dmitry Ganyushin       : Spin-Orbit,Spin-Spin,Magnetic field MRCI      
+  Miquel Garcia-Rates    : C-PCM and meta-GGA Hessian, CCSD/C-PCM, Gaussian charge scheme 
+  Tiago L. C. Gouveia    : GS-ROHF, GS-ROCIS                             
+  Yang Guo               : DLPNO-NEVPT2, F12-NEVPT2, CIM, IAO-localization        
+  Andreas Hansen         : Spin unrestricted coupled pair/coupled cluster methods 
+  Ingolf Harden          : AUTO-CI MPn and infrastructure                
+  Benjamin Helmich-Paris : MC-RPA, TRAH-(SCF,CASSCF), AVAS, COSX integrals, SCF dyn. polar. 
+  Lee Huntington         : MR-EOM, pCC                                   
+  Robert Izsak           : Overlap fitted RIJCOSX, COSX-SCS-MP3, EOM     
+  Riya Kayal             : Wick's Theorem for AUTO-CI, AUTO-CI UHF-CCSDT 
+  Emily Kempfer          : AUTO-CI, RHF CISDT and CCSDT                  
+  Christian Kollmar      : KDIIS, OOCD, Brueckner-CCSD(T), CCSD density, CASPT2, CASPT2-K, improved NEVPT2 
+  Axel Koslowski         : Symmetry handling                             
+  Simone Kossmann        : meta-GGA functionals, TD-DFT gradient, OOMP2, (MP2 Hessian; deprecated post 5.0) 
+  Lucas Lang             : DCDCAS                                        
+  Marvin Lechner         : AUTO-CI (C++ implementation), FIC-MRCC        
+  Spencer Leger          : CASSCF response                               
+  Dagmar Lenk            : GEPOL surface, SMD, ORCA-2-JSON               
+  Dimitrios Liakos       : Extrapolation schemes; Compound Job, initial MDCI parallelization 
+  Dimitrios Manganas     : Further ROCIS development; embedding schemes. LFT, Crystal Embedding 
+  Dimitrios Pantazis     : SARC Basis sets                               
+  Anastasios Papadopoulos: AUTO-CI, single reference methods and gradients 
+  Taras Petrenko         : pre 6.0 DFT Hessian and TD-DFT gradient, (ASA, deprecated), ECA, 1-Electron XAS/XES, NRVS 
+  Peter Pinski           : DLPNO-MP2, DLPNO-MP2 Gradient                 
+  Christoph Reimann      : Effective Core Potentials                     
+  Marius Retegan         : Local ZFS, SOC                                
+  Christoph Riplinger    : Optimizer, TS searches, QM/MM, DLPNO-CCSD(T), (RO)-DLPNO pert. Triples 
+  Michael Roemelt        : Original ROCIS implementation                 
+  Masaaki Saitow         : Open-shell DLPNO-CCSD energy and density      
+  Barbara Sandhoefer     : DKH picture change effects                    
+  Kantharuban Sivalingam : CASSCF convergence/infrastructure, NEVPT2 and variants, FIC-MRCI 
+  Bernardo de Souza      : ESD, SOC TD-DFT                               
+  Georgi L. Stoychev     : AutoAux, RI-MP2 NMR, DLPNO-MP2 response, X2C  
+  Van Anh Tran           : RI-MP2 g-tensors                              
+  Willem Van den Heuvel  : Paramagnetic NMR                              
+  Zikuan Wang            : NOTCH, Electric field optimization            
+  Frank Wennmohs         : Technical directorship and infrastructure     
+  Hang Xu                : AUTO-CI-Response properties                   
+                                                                         
+[FACCTs GmbH]                                                            
+  Markus Bursch, Miquel Garcia-Rates, Christoph Riplinger, Bernardo de Souza, Georgi L. Stoychev 
+                                                                 
+  APM, Basis sets (HGBS, AHGBS, def-TZVP (Ac-Lr), def2-XVPD (La-Lu)), CI-OPT, improved COSX, DLPNO-Multilevel,           
+  DOCKER, DRACO, updates on ESD, GOAT, IRC, LR-CPCM, MBIS, meta-GGA TD-DFT gradient, ML-optimized integration grids, 
+  MM, NACMEs, nearIR, NEB, NEB-TS, NL-DFT gradient (VV10), 2- and 3-layer-ONIOM, interface openCOSMO-RS, QMMM,   
+  Crystal-QMMM, SF, symmetry and pop. for TD-DFT, r2SCAN hybrids, SOLVATOR                                   
+                                                                         
+[Other institutions]                                                     
+  V. Asgeirsson          : NEB                                           
+  Christoph Bannwarth    : sTDA-DFT, sTD-DFT, PBEh-3c, B97-3c, D3        
+  Sebastian Ehlert       : rSCAN, r2SCAN, r2SCAN-3c, D4, dhf basis sets  
+  Marvin Friede          : D4 for Fr, Ra, Ac-Lr                          
+  Lars Goerigk           : TD-DFT with DH, B97 family of functionals     
+  Stefan Grimme          : VdW corrections, initial TS optimization, DFT functionals, gCP, sTDA/sTD-DF 
+  Waldemar Hujo          : DFT-NL                                        
+  H. Jonsson             : NEB                                           
+  Holger Kruse           : gCP                                           
+  Marcel Mueller         : wB97X-3c, vDZP basis set                      
+  Hagen Neugebauer       : wr2SCAN                                       
+  Tobias Risthaus        : range-separated hybrid DFT                    
+  Lukas Wittmann         : regularized MP2, r2SCAN double-hybrids, wr2SCAN        
+                                                                         
+We gratefully acknowledge several colleagues who have allowed us to      
+interface, adapt or use parts of their codes:                            
+  Ed Valeev, F. Pavosevic, A. Kumar             : LibInt (2-el integral package), F12 methods 
+  Garnet Chan, S. Sharma, J. Yang, R. Olivares  : DMRG                   
+  Ulf Ekstrom                                   : XCFun DFT Library      
+  Mihaly Kallay                                 : mrcc  (arbitrary order and MRCC methods)
+  Frank Weinhold                                : gennbo (NPA and NBO analysis)           
+  Simon Mueller                                 : openCOSMO-RS                            
+  Christopher J. Cramer and Donald G. Truhlar   : smd solvation model                     
+  S Lehtola, MJT Oliveira, MAL Marques          : LibXC Library                           
+  Liviu Ungur et al                             : ANISO software                          
 
 
  Your calculation uses the libint2 library for the computation of 2-el integrals
@@ -163,7 +175,7 @@ Your calculation utilizes the basis: def2-SVP
 ================================================================================
 NAME = D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\Chloroform_1\input.inp
 |  1> ! HF DEF2-SVP LARGEPRINT
-|  2> # Creat by orcacal% pal nprocs 20 end
+|  2> # Creat by orcacal
 |  3> % pal nprocs 20 end
 |  4> % maxcore 400
 |  5> * xyz 0 1
@@ -320,17 +332,6 @@ BASIS SET IN INPUT FORMAT
   end;
 
 
-Checking for AutoStart:
-The File: D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\Chloroform_1\input.gbw exists
-Trying to determine its content:
-     ... Fine, the file contains calculation information
-     ... Fine, the calculation information was read
-     ... Fine, the file contains a basis set
-     ... Fine, the basis set was read
-     ... Fine, the file contains a geometry
-     ... Fine, the geometry was read
-     ... The file does not contain orbitals - skipping AutoStart
-
 
            ************************************************************
            *        Program running with 20 parallel MPI-processes    *
@@ -406,11 +407,11 @@ Calculating Nuclear repulsion               ... done (  0.0 sec) ENN=    209.098
 
 Diagonalization of the overlap matrix:
 Smallest eigenvalue                        ... 3.411e-03
-Time for diagonalization                   ...    0.001 sec
+Time for diagonalization                   ...    0.002 sec
 Threshold for overlap eigenvalues          ... 1.000e-07
 Number of eigenvalues below threshold      ... 0
-Time for construction of square roots      ...    0.003 sec
-Total time needed                          ...    0.020 sec
+Time for construction of square roots      ...    0.001 sec
+Total time needed                          ...    0.012 sec
 
 -------------------
 DFT GRID GENERATION
@@ -433,7 +434,7 @@ Average number of points per batch           ...       63
 Average number of grid points per atom       ...     4974
 Initializing property integral containers    ... done (  0.0 sec)
 
-SHARK setup successfully completed in   0.4 seconds
+SHARK setup successfully completed in   0.3 seconds
 
 Maximum memory used throughout the entire STARTUP-calculation: 9.8 MB
 
@@ -531,7 +532,7 @@ Loading Hartree-Fock densities                     ... done
 Calculating cut-offs                               ... done
 Initializing the effective Hamiltonian             ... done
 Setting up the integral package (SHARK)            ... done
-Starting the Coulomb interaction                   ... done (   0.1 sec)
+Starting the Coulomb interaction                   ... done (   0.0 sec)
 Making the grid                                    ... done (   0.1 sec)
 Mapping shells                                     ... done
 Starting the XC term evaluation                    ... done (   0.0 sec)
@@ -540,7 +541,7 @@ Diagonalizing the Hamiltonian                      ... done (   0.0 sec)
 Back transforming the eigenvectors                 ... done (   0.0 sec)
 Now organizing SCF variables                       ... done
                       ------------------
-                      INITIAL GUESS DONE (   0.3 sec)
+                      INITIAL GUESS DONE (   0.2 sec)
                       ------------------
 ----------------------
 INITIAL GUESS ORBITALS
@@ -1778,7 +1779,7 @@ INITIAL GUESS ORBITALS
   7H   1px       -0.101817  0.321771  0.401009 -0.160794  0.429695 -0.177785
   7H   1py       -0.377074  0.005714 -0.475420  0.490254 -0.847726  0.269433
              **** ENERGY FILE WAS UPDATED (D:\hty\creat\code\github\orcacal\Test\ORCA_cal\ORCA_structure\Chloroform_1\input.en.tmp) ****
-Finished Guess after   0.5 sec
+Finished Guess after   0.3 sec
 Maximum memory used throughout the entire GUESS-calculation: 4.7 MB
 
 
@@ -1796,7 +1797,7 @@ Maximum memory used throughout the entire GUESS-calculation: 4.7 MB
 Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp  Time(sec)
 -------------------------------------------------------------------------------------------
                ***  Starting incremental Fock matrix formation  ***
-    1    -996.6047792678739370     0.00e+00  2.91e-03  6.55e-02  1.83e-01  0.700   0.3
+    1    -996.6047792678739370     0.00e+00  2.91e-03  6.55e-02  1.83e-01  0.700   0.1
 
                          ----------------------------
                          !        ITERATION     0   !
@@ -1811,7 +1812,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp
    alpha LUMO          :       0.4339 Eh
    DIIS-Error          :       0.182630127433
 
-    2    -996.6392519351700230    -3.45e-02  2.27e-03  4.60e-02  1.18e-01  0.700   0.3
+    2    -996.6392519351700230    -3.45e-02  2.27e-03  4.60e-02  1.18e-01  0.700   0.1
 
                          ----------------------------
                          !        ITERATION     1   !
@@ -1827,7 +1828,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp
    DIIS-Error          :       0.118264290133
 
                                ***Turning on AO-DIIS***
-    3    -996.6610750072381961    -2.18e-02  1.40e-03  2.30e-02  6.95e-02  0.700   0.4
+    3    -996.6610750072381961    -2.18e-02  1.40e-03  2.30e-02  6.95e-02  0.700   0.2
 
                          ----------------------------
                          !        ITERATION     2   !
@@ -1844,7 +1845,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp
    DIIS coefficients:
      -0.44871  -0.45144   1.90015
 
-    4    -996.6753338711569086    -1.43e-02  3.33e-03  5.56e-02  4.71e-02  0.000   0.3
+    4    -996.6753338711569086    -1.43e-02  3.33e-03  5.56e-02  4.71e-02  0.000   0.1
 
                          ----------------------------
                          !        ITERATION     3   !
@@ -1861,7 +1862,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp
    DIIS coefficients:
      -0.15446  -0.28315  -0.49121   1.92882
 
-    5    -996.7079331515310514    -3.26e-02  3.43e-04  3.48e-03  3.48e-03  0.000   0.3
+    5    -996.7079331515310514    -3.26e-02  3.43e-04  3.48e-03  3.48e-03  0.000   0.2
 
                          ----------------------------
                          !        ITERATION     4   !
@@ -1882,7 +1883,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     DIISErr   Damp
 ---------------------------------------S-O-S-C-F--------------------------------------
 Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     MaxGrad    Time(sec)
 --------------------------------------------------------------------------------------
-    6    -996.7080474099955154    -1.14e-04  1.66e-04  1.73e-03  1.55e-03     0.5
+    6    -996.7080474099955154    -1.14e-04  1.66e-04  1.73e-03  1.55e-03     0.1
 
                          ----------------------------
                          !        ITERATION     5   !
@@ -1897,7 +1898,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     MaxGrad    Tim
    alpha LUMO          :       0.1640 Eh
 
                *** Restarting incremental Fock matrix formation ***
-    7    -996.7080664946145134    -1.91e-05  8.89e-05  9.53e-04  5.58e-04     0.3
+    7    -996.7080664946145134    -1.91e-05  8.89e-05  9.53e-04  5.58e-04     0.1
 
                          ----------------------------
                          !        ITERATION     6   !
@@ -1911,7 +1912,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     MaxGrad    Tim
    alpha HOMO          :      -0.4327 Eh
    alpha LUMO          :       0.1640 Eh
 
-    8    -996.7080695220970483    -3.03e-06  4.59e-05  4.93e-04  1.44e-04     0.3
+    8    -996.7080695220970483    -3.03e-06  4.59e-05  4.93e-04  1.44e-04     0.1
 
                          ----------------------------
                          !        ITERATION     7   !
@@ -1925,7 +1926,7 @@ Iteration    Energy (Eh)           Delta-E    RMSDP     MaxDP     MaxGrad    Tim
    alpha HOMO          :      -0.4327 Eh
    alpha LUMO          :       0.1640 Eh
 
-    9    -996.7080702304594979    -7.08e-07  5.43e-06  6.71e-05  2.31e-05     0.2
+    9    -996.7080702304594979    -7.08e-07  5.43e-06  6.71e-05  2.31e-05     0.1
                  **** Energy Check signals convergence ****
 
                          ----------------------------
@@ -2018,7 +2019,54 @@ ORBITAL ENERGIES
   33   0.0000       0.587159        15.9774 
   34   0.0000       0.592956        16.1351 
   35   0.0000       0.644142        17.5280 
-*Only the first 10 virtual orbitals were printed.
+  36   0.0000       0.658558        17.9203 
+  37   0.0000       0.687712        18.7136 
+  38   0.0000       0.791807        21.5462 
+  39   0.0000       0.813302        22.1311 
+  40   0.0000       0.833337        22.6763 
+  41   0.0000       0.866479        23.5781 
+  42   0.0000       0.882083        24.0027 
+  43   0.0000       0.886204        24.1148 
+  44   0.0000       0.948673        25.8147 
+  45   0.0000       0.985756        26.8238 
+  46   0.0000       0.991035        26.9674 
+  47   0.0000       1.027852        27.9693 
+  48   0.0000       1.036011        28.1913 
+  49   0.0000       1.050845        28.5949 
+  50   0.0000       1.056273        28.7427 
+  51   0.0000       1.060523        28.8583 
+  52   0.0000       1.065194        28.9854 
+  53   0.0000       1.072726        29.1903 
+  54   0.0000       1.095386        29.8070 
+  55   0.0000       1.142009        31.0756 
+  56   0.0000       1.189383        32.3648 
+  57   0.0000       1.233436        33.5635 
+  58   0.0000       1.308956        35.6185 
+  59   0.0000       1.380439        37.5637 
+  60   0.0000       1.452765        39.5317 
+  61   0.0000       1.580254        43.0009 
+  62   0.0000       1.620931        44.1078 
+  63   0.0000       1.694240        46.1026 
+  64   0.0000       1.769354        48.1466 
+  65   0.0000       1.789793        48.7027 
+  66   0.0000       1.873607        50.9834 
+  67   0.0000       2.009900        54.6922 
+  68   0.0000       2.018442        54.9246 
+  69   0.0000       2.031642        55.2838 
+  70   0.0000       2.091383        56.9094 
+  71   0.0000       2.146200        58.4011 
+  72   0.0000       2.230938        60.7069 
+  73   0.0000       2.366235        64.3885 
+  74   0.0000       2.468670        67.1759 
+  75   0.0000       2.485725        67.6400 
+  76   0.0000       2.487339        67.6839 
+  77   0.0000       2.698550        73.4313 
+  78   0.0000       2.802984        76.2731 
+  79   0.0000       2.836414        77.1828 
+  80   0.0000       3.061890        83.3183 
+  81   0.0000       3.169928        86.2581 
+  82   0.0000       3.250443        88.4490 
+  83   0.0000       3.282466        89.3204 
 ------------------
 MOLECULAR ORBITALS (RHF, ROHF)
 ------------------
@@ -7389,38 +7437,38 @@ B(  3-C ,  7-H ) :   0.9750
 TIMINGS
 -------
 
-Total SCF time: 0 days 0 hours 0 min 3 sec 
+Total SCF time: 0 days 0 hours 0 min 1 sec 
 
-Total time                  ....       3.826 sec
-Sum of individual times     ....       3.592 sec  ( 93.9%)
+Total time                  ....       1.375 sec
+Sum of individual times     ....       1.332 sec  ( 96.9%)
 
-SCF preparation             ....       0.217 sec  (  5.7%)
-Fock matrix formation       ....       0.833 sec  ( 21.8%)
-  Startup                   ....       0.289 sec  ( 34.7% of F)
-  Coulomb+Exchange Fock     ....       0.331 sec  ( 39.7% of F)
+SCF preparation             ....       0.043 sec  (  3.1%)
+Fock matrix formation       ....       0.338 sec  ( 24.6%)
+  Startup                   ....       0.072 sec  ( 21.3% of F)
+  Coulomb+Exchange Fock     ....       0.177 sec  ( 52.4% of F)
 Diagonalization             ....       0.000 sec  (  0.0%)
-Density matrix formation    ....       0.389 sec  ( 10.2%)
-Total Energy calculation    ....       0.333 sec  (  8.7%)
-Population analysis         ....       0.506 sec  ( 13.2%)
-Orbital Transformation      ....       0.149 sec  (  3.9%)
+Density matrix formation    ....       0.112 sec  (  8.1%)
+Total Energy calculation    ....       0.109 sec  (  7.9%)
+Population analysis         ....       0.307 sec  ( 22.3%)
+Orbital Transformation      ....       0.022 sec  (  1.6%)
 Orbital Orthonormalization  ....       0.000 sec  (  0.0%)
-DIIS solution               ....       0.875 sec  ( 22.9%)
+DIIS solution               ....       0.358 sec  ( 26.0%)
   MO trafo                  ....       0.000 sec  (  0.0 % of DIIS)
   Orb grad                  ....       0.000 sec  (  0.0 % of DIIS)
   Energy W gradient         ....       0.000 sec  (  0.0 % of DIIS)
-  DIIS error                ....       0.110 sec  ( 12.6 % of DIIS)
-  DIIS work                 ....       0.562 sec  ( 64.2 % of DIIS)
+  DIIS error                ....       0.119 sec  ( 33.2 % of DIIS)
+  DIIS work                 ....       0.160 sec  ( 44.7 % of DIIS)
   Form Q                    ....       0.000 sec  (  0.0 % of DIIS)
   Form QpQm                 ....       0.000 sec  (  0.0 % of DIIS)
   Exp/Cayley                ....       0.000 sec  (  0.0 % of DIIS)
   Orb update                ....       0.000 sec  (  0.0 % of DIIS)
-  Wake-sleep                ....       0.153 sec  ( 17.5 % of DIIS)
-SOSCF solution              ....       0.290 sec  (  7.6%)
-  MO trafo                  ....       0.199 sec  ( 68.6 % of SOSCF)
-  Orb grad                  ....       0.033 sec  ( 11.4 % of SOSCF)
-  Rot update                ....       0.008 sec  (  2.8 % of SOSCF)
-  Step                      ....       0.050 sec  ( 17.2 % of SOSCF)
-Finished LeanSCF after   3.9 sec
+  Wake-sleep                ....       0.067 sec  ( 18.7 % of DIIS)
+SOSCF solution              ....       0.043 sec  (  3.1%)
+  MO trafo                  ....       0.023 sec  ( 53.5 % of SOSCF)
+  Orb grad                  ....       0.007 sec  ( 16.3 % of SOSCF)
+  Rot update                ....       0.000 sec  (  0.0 % of SOSCF)
+  Step                      ....       0.013 sec  ( 30.2 % of SOSCF)
+Finished LeanSCF after   1.4 sec
 
 Maximum memory used throughout the entire LEANSCF-calculation: 7.0 MB
 
@@ -7522,7 +7570,7 @@ x,y,z [Debye]:     0.000002    -2.044122     0.881418
 
  
 
-Dipole moment calculation done in   0.1 sec 
+Dipole moment calculation done in   0.0 sec 
 
 Maximum memory used throughout the entire PROP-calculation: 2.4 MB
 
@@ -7589,9 +7637,9 @@ List of optional additional citations
 
 Timings for individual modules:
 
-Sum of individual times          ...        7.727 sec (=   0.129 min)
-Startup calculation              ...        1.120 sec (=   0.019 min)  14.5 %
-SCF iterations                   ...        5.835 sec (=   0.097 min)  75.5 %
-Property calculations            ...        0.772 sec (=   0.013 min)  10.0 %
+Sum of individual times          ...        4.193 sec (=   0.070 min)
+Startup calculation              ...        0.842 sec (=   0.014 min)  20.1 %
+SCF iterations                   ...        2.789 sec (=   0.046 min)  66.5 %
+Property calculations            ...        0.562 sec (=   0.009 min)  13.4 %
                              ****ORCA TERMINATED NORMALLY****
-TOTAL RUN TIME: 0 days 0 hours 0 minutes 9 seconds 20 msec
+TOTAL RUN TIME: 0 days 0 hours 0 minutes 5 seconds 185 msec

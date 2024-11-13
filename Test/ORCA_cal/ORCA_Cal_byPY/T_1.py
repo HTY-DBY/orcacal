@@ -1,12 +1,14 @@
+# -*- coding: utf-8 -*-
+import os
+
 import os
 import orcacal
 from Test.Goble.GSet import GSet_init
 
 GSet = GSet_init()
 
-input_file_path = os.path.join(
-	GSet.ORCA_cal_test_structure, os.path.splitext(os.path.basename(__file__))[0]
-)
+project_name = 'Chloroform_1'
+input_file_path = os.path.join(GSet.ORCA_cal_test_structure, project_name)
 # %%
 
 project = orcacal.init(GSet.ORCA_ins_path, input_file_path)  # 初始化计算类
@@ -38,7 +40,7 @@ project.run()
 print(f'HOMO: {HOMO} eV, LUMO: {LUMO} eV')
 # 获取单点能
 single_point_energy_Debye = project.get.single_point_energy_Debye()
-print(f'single_point_energy_Debye: {single_point_energy_Debye:.5f} Debye')
+print(f'single point energy (Debye): {single_point_energy_Debye:.5f} Debye')
 # 获取偶极矩
 dipolemoment_Debye = project.get.dipolemoment_Debye()
-print(f'dipolemoment_Debye:\nTotal--{dipolemoment_Debye[0]:.5f}, X-{dipolemoment_Debye[1]:.5f}, Y-{dipolemoment_Debye[2]:.5f}, Z-{dipolemoment_Debye[3]:.5f} Debye')
+print(f'dipolemoment (Debye):\nTotal--{dipolemoment_Debye[0]:.5f}, X-{dipolemoment_Debye[1]:.5f}, Y-{dipolemoment_Debye[2]:.5f}, Z-{dipolemoment_Debye[3]:.5f} Debye')
