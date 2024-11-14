@@ -8,6 +8,7 @@ orcacal.egg-info/SOURCES.txt
 orcacal.egg-info/dependency_links.txt
 orcacal.egg-info/top_level.txt
 orcacal/Multiwfn/Multiwfn.exe
+orcacal/Multiwfn/Multiwfn_Linux
 orcacal/Multiwfn/NAdOs.mwfn
 orcacal/Multiwfn/libiomp5md.dll
 orcacal/Multiwfn/settings.ini
