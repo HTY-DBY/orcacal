@@ -11,28 +11,30 @@ ORCA 可以处理溶剂化和相对论效应，同时特别着重于开壳层分
 
 ## 1.2. Multiwfn 简介
 
-Multiwfn 是开源免费的波函数分析程序，也提供许多重要的分析方法的思想，如 ADCH 原子电荷、拉普拉斯键级、范德华势、hole-electron/IFCT/CTS 电子激发分析等。
+Multiwfn 是开源免费的波函数分析程序，提供许多重要的分析方法，如 ADCH 原子电荷、拉普拉斯键级、范德华势、hole-electron/IFCT/CTS 电子激发分析等。
 
-# 2. ORCA 的安装
+# 2. 安装
+
+## 2.1. ORCA 的安装
 
 在 ORCA 官网 <https://orcaforum.kofo.mpg.de/app.php/dlext/> 可下载最新的的 ORCA 安装包（需要全局魔法）。
 `必须注册账号`后，页面才会有各个版本的下载显示。截至 2024-11-13，已更新至 6.0.1 版本，该版本的具体需要下载的文件和安装方法见后文。由于你肯定会需要用到并行功能，所有我会连同并行方式一并讲解。
 
 在本文中，以 `{orcaIns}` 表示 orca 的安装路径。
 
-## 2.1. Windows 下安装
+### 2.1.1. Windows 下安装
 
 在 ORCA 官网下载 `ORCA 6.0.1, Windows, 64bit, Installer`
 
 ![](https://i-blog.csdnimg.cn/direct/549800b332564d958b3f564561326666.png)
 
-解压由 `ORCA 6.0.1, Windows, 64bit, Installer` 下载的 `Orca6.0.1.Win64.zip`，双击 `Orca6.0.1.Win64.exe` 进行安装
+解压由 `ORCA 6.0.1, Windows, 64bit, Installer` 下载的 `Orca6.0.1.Win64.zip`，双击 `Orca6.0.1.Win64.exe` 进行安装。
 
 这里务必选择完整安装：
 
 ![](https://i-blog.csdnimg.cn/direct/23a67b6b80e94245bc624ddc4eaabfa4.png)
 
-在项目目录中新建 input.inp 文件，令其内容为
+在项目目录中新建 input.inp 文件，令其内容为：
 
 ```bash
 ! HF DEF2-SVP LARGEPRINT
@@ -44,11 +46,11 @@ H   0.7920   0.0000  -0.4973
 *
 ```
 
-在当前目录下使用终端，运行 `{orcaIns}/orca input.inp > output.out`，未报错且目录下产生大量文件则表示 ORCA 安装成功
+在当前目录下使用终端，运行 `{orcaIns}/orca input.inp > output.out`，未报错且目录下产生大量文件则表示 ORCA 安装成功。
 
-在微软官网下载 <https://www.microsoft.com/en-us/download/details.aspx?id=57467> 下载 Microsoft MPI v10.0 的 `msmpisetup.exe`，安装
+在微软官网下载 <https://www.microsoft.com/en-us/download/details.aspx?id=57467> 下载并安装 Microsoft MPI v10.0 的 `msmpisetup.exe`。
 
-在项目目录中新建 input.inp 文件，令其内容为
+在项目目录中新建 input.inp 文件，令其内容为：
 
 ```bash
 ! HF DEF2-SVP LARGEPRINT
@@ -60,13 +62,17 @@ H   0.7920   0.0000  -0.4973
 *
 ```
 
-在当前目录下使用终端，运行 `{orcaIns}/orca input.inp > output.out`，未报错且目录下产生大量文件则表示 ORCA 并行功能安装成功
+在当前目录下使用终端，运行 `{orcaIns}/orca input.inp > output.out`，未报错且目录下产生大量文件则表示 ORCA 并行功能安装成功。
 
-## 2.2. Linux 下安装
+### 2.1.2. Linux 下安装
 
-## 2.3. Mac 下安装
+### 2.1.3. Mac 下安装
 
-作者无 Mac 电脑，无法对此做出详细教程
+作者无 Mac 电脑，无法对此做出详细教程。
+
+## 2.2. Multiwfn 安装
+
+在 Multiwfn 官网 <http://sobereva.com/multiwfn/> 下载
 
 # 3. ORCA 的运行
 
@@ -270,8 +276,14 @@ project = orcacal.init(orcaIns, input_file_path)  # 初始化计算类
 project.run()  # 运行
 ```
 
-orcacal 的更多使用方法详见后文各案例和 https://github.com/HTY-DBY/orcacal
+orcacal 的更多使用方法详见后文各案例和 <https://github.com/HTY-DBY/orcacal>
 
-# 4. 基础计算
+# 4. 常用计算
 
-## 4.1. 计算单点能
+## 4.1. 几何优化 频率计算
+
+## 4.2. 单点能计算
+
+## 4.3. 福井指数计算
+
+## 4.4. 激发态
